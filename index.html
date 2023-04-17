@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game with Qualtrics Integration</title>
+</head>
+<body>
+  <!-- Embed the game using an iframe -->
+  <iframe src="https://gd.games/instant-builds/23dba40a-3624-404c-a748-e42cbabe8731" width="100%" height="600" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe>
+
+  <!-- Add a script to send the 'gameComplete' message to the parent window -->
+  <script>
+    window.addEventListener('message', function(event) {
+      if (event.data === 'gameComplete') {
+        window.parent.postMessage('gameComplete', '*');
+      }
+    });
+  </script>
+</body>
+</html>
