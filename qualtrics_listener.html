@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qualtrics Listener</title>
+</head>
+<body>
+  <!-- Add a script to listen for the 'gameComplete' message -->
+  <script>
+    window.parent.postMessage('initQualtricsListener', '*');
+    
+    window.addEventListener('message', function(event) {
+      if (event.data.event === 'gameComplete') {
+        Qualtrics.SurveyEngine.setEmbeddedData('gameComplete', '1');
+      } else if (event.data === 'qualtricsListenerInitialized') {
+        console.log('Qualtrics listener initialized');
+      }
+    });
+  </script>
+</body>
+</html>
